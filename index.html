@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile-Friendly Water Hydrolysis Animation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f5f8fa;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .beaker {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 300px;
+        height: 250px;
+        background-color: #e6f3ff;
+        border: 5px solid #7ab8ff;
+        border-top: none;
+        border-radius: 0 0 20px 20px;
+      }
+      .electrode {
+        position: absolute;
+        bottom: 0;
+        width: 20px;
+        height: 200px;
+      }
+      .anode {
+        left: 30%;
+        background-color: #ff4d4d;
+      }
+      .cathode {
+        right: 30%;
+        background-color: #1a1a1a;
+      }
+      .bubble-container {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
+        color: #333;
+        animation: rise 4s infinite;
+      }
+      .h2 {
+        background-color: rgba(255, 204, 204, 0.7);
+        right: 30%;
+      }
+      .o2 {
+        background-color: rgba(204, 255, 255, 0.7);
+        left: 30%;
+      }
+      @keyframes rise {
+        0% {
+          bottom: 50px;
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          bottom: 280px;
+          opacity: 0;
+        }
+      }
+      .label {
+        position: absolute;
+        font-size: 14px;
+        font-weight: bold;
+        color: #555;
+      }
+      .battery {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 50px;
+        background-color: #ffe680;
+        border: 3px solid #555;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5px;
+      }
+      .battery::before {
+        content: "";
+        width: 10px;
+        height: 20px;
+        background-color: #555;
+        position: absolute;
+        top: -10px;
+        left: 45px;
+      }
+      .battery-terminal {
+        font-size: 24px;
+        font-weight: bold;
+        color: #555;
+      }
+      .formulas {
+        width: 100%;
+        max-width: 600px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        font-size: 16px;
+        line-height: 1.6;
+        box-sizing: border-box;
+      }
+      .formula-step {
+        background-color: #f5f8fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .formula-step h4 {
+        margin: 0 0 5px 0;
+        color: #7ab8ff;
+      }
+      .formula-equation {
+        font-weight: bold;
+        color: #555;
+      }
+      .anode-reaction {
+        color: #ff4d4d;
+      }
+      .cathode-reaction {
+        color: #1a1a1a;
+      }
+      .overall-reaction {
+        color: #7ab8ff;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          height: 300px;
+        }
+        .beaker {
+          height: 200px;
+        }
+        .electrode {
+          height: 150px;
+        }
+        .label {
+          font-size: 12px;
+        }
+        .battery {
+          width: 80px;
+          height: 40px;
+        }
+        .battery-terminal {
+          font-size: 20px;
+        }
+        .formulas {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="beaker">
+        <div class="electrode anode"></div>
+        <div class="electrode cathode"></div>
+      </div>
+      <div class="label" style="top: 140px; left: 20%">Anode (+)</div>
+      <div class="label" style="top: 140px; right: 20%">Cathode (-)</div>
+      <div
+        class="label"
+        style="bottom: 80px; left: 50%; transform: translateX(-50%)"
+      >
+        H<sub>2</sub>O
+      </div>
+      <div class="battery">
+        <span class="battery-terminal">-</span>
+        <span class="battery-terminal">+</span>
+      </div>
+    </div>
+
+    <div class="formulas">
+      <h3>Step-by-step Formulas:</h3>
+      <div class="formula-step">
+        <h4>1. At the Anode (oxidation):</h4>
+        <p class="formula-equation anode-reaction">
+          2H<sub>2</sub>O(l) → O<sub>2</sub>(g) + 4H<sup>+</sup>(aq) + 4e<sup
+            >-</sup
+          >
+        </p>
+      </div>
+      <div class="formula-step">
+        <h4>2. At the Cathode (reduction):</h4>
+        <p class="formula-equation cathode-reaction">
+          4H<sup>+</sup>(aq) + 4e<sup>-</sup> → 2H<sub>2</sub>(g)
+        </p>
+      </div>
+      <div class="formula-step">
+        <h4>3. Overall reaction:</h4>
+        <p class="formula-equation overall-reaction">
+          2H<sub>2</sub>O(l) → 2H<sub>2</sub>(g) + O<sub>2</sub>(g)
+        </p>
+      </div>
+      <p><strong>Voltage needed: 1.23V</strong></p>
+    </div>
+
+    <script>
+      function createBubbles(type, count) {
+        const beaker = document.querySelector(".beaker");
+        for (let i = 0; i < count; i++) {
+          const bubbleContainer = document.createElement("div");
+          bubbleContainer.classList.add("bubble-container", type);
+          bubbleContainer.style.animationDelay = `${Math.random() * 4}s`;
+          bubbleContainer.textContent = type.toUpperCase();
+          beaker.appendChild(bubbleContainer);
+        }
+      }
+
+      createBubbles("h2", 10);
+      createBubbles("o2", 5);
+    </script>
+  </body>
+</html>
